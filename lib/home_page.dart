@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers
 
+import 'package:f/app_crontoller.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,19 +21,12 @@ class HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Contador'),
       ),
-      body: Container(
-        height: 100,
-        width: 100,
-        color: Colors.black,
-        child: Align(
-          alignment: Alignment.topLeft,
-          child: Container(
-            height: 20,
-            width: 20,
-            color: Colors.green,
-          ),
-        ),
-      ),
+      body: Center(
+          child: Switch(
+              value: AppController.instance.isDarkTheme,
+              onChanged: (value) {
+                AppController.instance.changeTheme();
+              })),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {

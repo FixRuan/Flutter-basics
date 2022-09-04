@@ -1,3 +1,4 @@
+import 'package:f/app_crontoller.dart';
 import 'package:flutter/material.dart';
 
 import 'home_page.dart';
@@ -7,9 +8,19 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.green),
-      home: const HomePage(),
+    return AnimatedBuilder(
+      animation: AppController.instance,
+      builder: (context, child) {
+        return MaterialApp(
+          theme: ThemeData(
+            primarySwatch: Colors.green,
+            brightness: AppController.instance.isDarkTheme == true
+                ? Brightness.dark
+                : Brightness.light,
+          ),
+          home: const HomePage(),
+        );
+      },
     );
   }
 }
